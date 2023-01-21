@@ -1,0 +1,106 @@
+﻿@model EntityLayer.Entities.Product
+@{
+    ViewBag.Title = "ProductDetails";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+<section>
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-lg-7 order-2 order-lg-1">
+                    <div class="detail-carousel">
+                        <div class="swiper swiper-container detail-slider photoswipe-gallery swiper-initialized swiper-horizontal swiper-pointer-events" id="detailSlider">
+                            <div class="swiper-wrapper" id="swiper-wrapper-52c0a760d1ed0973" aria-live="polite">
+                                <div class="swiper-slide swiper-slide-duplicate swiper-slide-prev" data-swiper-slide-index="5" role="group" aria-label="6 / 6" style="width: 536px;">
+                                    <div data-toggle="zoom" data-image="img/product/detail-6.jpg" style="position: relative; overflow: hidden;">
+                                        <img class="img-fluid" src="~/Content/img/@Model.Image" alt="Push-up Jeans 6">
+                                        <img role="presentation" src="~/Content/img/@Model.Image" class="zoomImg" style="position: absolute; top: 0px; left: 0px; opacity: 0; width: 1024px; height: 1024px; border: none; max-width: none; max-height: none;">
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-5 ps-lg-4 order-1 order-lg-2">
+                    <h1 class="mb-4">@Model.Name</h1>
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-sm-between mb-4">
+                        <ul class="list-inline mb-2 mb-sm-0">
+                            <li class="list-inline-item h4 fw-light mb-0">@Model.Price TL</li>
+                            <li class="list-inline-item text-muted fw-light">
+                                <del>@Model.OldPrice TL</del>
+                            </li>
+                        </ul>
+                    </div>
+                    <p class="mb-0 text-muted">@Model.Description</p>
+                    <p class="text-muted">Kalan Stok: @Model.Stock</p>
+                    <form id="buyForm" action="#">
+                        <div class="input-group w-100 mb-4">
+                            <div class="flex-grow-1">
+                                <div class="d-grid h-100">
+                                    <a class="btn btn-dark" href="/Cart/AddCart/@Model.Id"> <i class="fa fa-shopping-cart me-2"></i>Sepete Ekle</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mt-5">
+        <div class="container">
+            <ul class="nav nav-tabs flex-column flex-sm-row" role="tablist">
+
+
+                <li class="nav-item"><a class="nav-link detail-nav-link active" data-bs-toggle="tab" href="#reviews" role="tab" aria-selected="true">Yorumlar</a></li>
+            </ul>
+            <div class="tab-content py-4">
+                <div class="tab-pane fade active show" id="reviews" role="tabpanel">
+                    <div class="row mb-5">
+                        <div class="col-lg-10 col-xl-9 w-100">
+
+                            <div class="media review">
+                                <div>
+                                    @foreach (var item in ViewBag.yrm)
+                                    {
+                                        <div class="card-body">
+                                            <div class="d-flex flex-start align-items-center">
+                                                <div>
+                                                    <h6 class="fw-bold text-primary mb-1">@item.User.Name @item.User.SurName</h6>
+                                                    <p class="text-muted small mb-0">
+                                                        @item.Date
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <p class="mt-3 mb-4 pb-2">
+                                                @item.Contents
+                                            </p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <form method="post" action="/Product/Comment">
+                                <div class=" py-3 border-0">
+                                    <div class="d-flex flex-start w-100">
+                                        <div class="form-outline w-100">
+                                            <textarea class="form-control" id="textAreaExample" name="Contents" rows="4" style="background: #fff;" placeholder="Yorum yazmak için tıklayınız..."></textarea>
+                                            <input type="hidden" name="ProductId" value="@Model.Id" />
+                                            <input type="hidden" name="UserId" value="@Session["userId"]"/>
+                                            <input type="hidden" name="Date" value="@DateTime.Now" />
+                                        </div>
+                                    </div>
+                                    <div class="float-end mt-2 pt-1">
+                                        <button type="submit" class="btn btn-dark btn-sm">Yorum Yaz</button>
+                                        <button type="button" class="btn btn-outline-primary btn-sm">İptal</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>

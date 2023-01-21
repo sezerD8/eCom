@@ -1,0 +1,117 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model  IPagedList<EntityLayer.Entities.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<div class="page-header">
+    <h2 class="pageheader-title">Ürünler</h2>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Ürünler</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered first" id="table">
+                        <thead>
+                            <tr>
+                                <th>Ad</th>
+                                <th>Açıklama</th>
+                                <th>Fiyat</th>
+                                <th>Eski Fiyat</th>
+                                <th>Stok</th>
+                                <th>Popüler Ürün</th>
+                                <th>Onay Durumu</th>
+                                <th>Resim</th>
+                                <th>Kategori</th>
+                                <th>Marka</th>
+                                <th>Beden</th>
+                                <th>Cinsiyet</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td>@item.Price</td>
+                                <td>@item.OldPrice</td>
+                                <td>@item.Stock</td>
+                                <td>
+                                    @if (item.Popular == true)
+                                    {
+                                        <label>Evet</label>
+                                    }
+                                    else
+                                    {
+                                        <label>Hayır</label>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.isApproved == true)
+                                    {
+                                        <label>Onaylandı</label>
+                                    }
+                                    else
+                                    {
+                                        <label>Onaylanmadı</label>
+                                    }
+                                </td>
+                                <td><img src="~/Content/img/@item.Image" style="width:100px; height:100px; margin:0px; object-fit:contain;" /></td>
+                                <td>@item.Category.Name</td>
+                                <td>@item.Brand.Name</td>
+                                <td>@item.Size.Name</td>
+                                <td>@item.Gender.Name</td>
+                                <td><a class="btn btn-danger btnSil text-white" data-id="@item.Id">Sil</a></td>
+                                <td><a href="/AdminProduct/Update/@item.Id" class="btn btn-primary">Güncelle</a></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center">@Html.PagedListPager(Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.Classic)</div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="/AdminProduct/Create" class="btn btn-success btn-block d-flex align-items-center justify-content-center" style="height:60px;">Ürün Ekle</a>
+
+
+<script src="~/Scripts/jquery-1.9.0.min.js"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#table").on("click", ".btnSil", function () {
+            var btn = $(this)
+            swal({
+                title: "Emin misin?",
+                text: "Eğer kategoriyi silersen bir daha geri getiremeyebilirsin!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((result) => {
+                    if (result) {
+                        swal("Kategori başarıyla silindi!", {
+                            icon: "success",
+                        });
+                        var id = btn.data("id");
+                        $.ajax({
+                            type: "GET",
+                            url: "/AdminProduct/Delete/" + id,
+                            success: function () {
+                                btn.parent().parent().remove();
+                            }
+                        });
+                    }
+                    else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        })
+    })
+</script>

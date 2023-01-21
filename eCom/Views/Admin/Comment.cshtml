@@ -1,0 +1,82 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<EntityLayer.Entities.Comment>
+@{
+    ViewBag.Title = "Comment";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="page-header">
+    <h2 class="pageheader-title">Yorumlar</h2>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Yorumlar</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered first" id="table">
+                        <thead>
+                            <tr>
+                                <th>İçerik</th>
+                                <th>Ürün bilgisi</th>
+                                <th>Kullanıcı</th>
+                                <th>Tarih</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Contents</td>
+                                <td>@item.Product.Name</td>
+                                <td>@item.User.UserName</td>
+                                <td>@item.Date</td>
+                                <td><a class="btn btn-danger btnSil text-white" data-id="@item.Id">Sil</a></td>
+                            </tr>
+                        }
+                    </table>
+                </div>
+                <div class="d-flex justify-content-center">@Html.PagedListPager(Model, sayfa => Url.Action("Comment", new { sayfa }), PagedListRenderOptions.Classic)</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-1.9.0.min.js"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#table").on("click", ".btnSil", function () {
+            var btn = $(this)
+            swal({
+                title: "Emin misin?",
+                text: "Eğer yorumu silersen bir daha geri getiremeyebilirsin!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((result) => {
+                    if (result) {
+                        swal("Kategori başarıyla silindi!", {
+                            icon: "success",
+                        });
+                        var id = btn.data("id");
+                        $.ajax({
+                            type: "GET",
+                            url: "/Admin/Delete/" + id,
+                            success: function () {
+                                btn.parent().parent().remove();
+                            }
+                        });
+                    }
+                    else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        })
+    })
+</script>

@@ -1,0 +1,15 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model List<EntityLayer.Entities.Category>
+
+<div class="row justify-content-between align-items-center mb-4">
+    <div class="col-12 col-sm">
+        <ul class="list-inline text-center text-sm-start mb-3 mb-sm-0">
+            @foreach (var item in Model)
+            {
+                <li class="list-inline-item"><a class="text-muted text-dark-hover" href="/Category/Details/@item.Id">@item.Name</a></li>
+            }
+        </ul>
+    </div>
+    <div class="col-12 col-sm-auto text-center"><a class="btn btn-link px-0" href="/AllProducts/Index">Tüm ürünler</a></div>
+</div>

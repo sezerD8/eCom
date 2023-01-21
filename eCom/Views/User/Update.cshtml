@@ -1,0 +1,63 @@
+﻿@model EntityLayer.Entities.User
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+<section class="pb-6 pt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-9 mb-5 mb-lg-0">
+                <h3 class="mb-5">Kullanıcı Bilgileri</h3>
+                <form method="post">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="firstname">Ad</label>
+                                <input type="text" class="form-control" name="Name" id="firstname" value="@Model.Name" />
+                                @Html.ValidationMessageFor(x => x.Name, "", new { @style = "color:red;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="lastname">Soyad</label>
+                                <input type="text" class="form-control" name="SurName" id="lastname" value="@Model.SurName" />
+                                @Html.ValidationMessageFor(x => x.SurName, "", new { @style = "color:red;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="username">Kullanıcı Adı</label>
+                                <input type="text" class="form-control" name="UserName" id="username" value="@Model.UserName" />
+                                @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="password">Şifre</label>
+                                <input type="password" class="form-control" name="Password" id="password" value="@Model.Password" />
+                                @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="repassword">Şifre Tekrar</label>
+                                <input type="password" class="form-control" name="RePassword" id="repassword" value="@Model.RePassword" />
+                                @Html.ValidationMessageFor(x => x.RePassword, "", new { @style = "color:red;" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4"></div>
+                    <button class="btn btn-dark" type="submit"><i class="far fa-save me-2"></i>Değişiklikleri Kaydet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

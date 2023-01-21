@@ -1,0 +1,68 @@
+﻿@model EntityLayer.Entities.Cart
+@{
+    ViewBag.Title = "Buy";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+<section>
+    <div class="container mt-5">
+        <div class="row ">
+
+            <div class="col-12">
+                <div class="cart">
+                    <div class="cart-wrapper">
+                        <div class="cart-header">
+                            <div class="row">
+                                <div class="col-6">Ürün</div>
+                                <div class="col-2 text-center ps-5">Fiyat</div>
+                                <div class="col-2 text-center ps-5">Adet</div>
+                                <div class="col-2 text-center ps-5">Tarih</div>
+                            </div>
+                        </div>
+                        <div class="cart-body">
+                            @using (Html.BeginForm("Buy2", "Sales", FormMethod.Post))
+                            {
+                                    <div class="cart-item">
+                                        <div class="row d-flex align-items-center text-center">
+                                            <div class="col-6">
+                                                <div class="d-flex align-items-center">
+                                                    <a href="detail.html"><img class="cart-item-img" src="/Content/img/@Model.Product.Image" /></a>
+                                                    <div class="cart-title text-start">
+                                                        <a class="text-dark" href="detail.html"><strong>@Html.DisplayFor(x => x.Product.Name, new { @class = "form-control" })</strong></a>
+                                                        <br><span class="text-muted text-sm">@Model.Product.Size.Name</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-2 text-center">@Html.DisplayFor(x => x.Product.Price, new { @class = "form-control" })</div>
+                                            <div class="col-2">@Html.DisplayFor(x => x.Quantity, new { @class = "form-control" })</div>
+                                            <div class="col-2">@Html.DisplayFor(x => Model.Date)</div>
+                                        </div>
+                                    </div>
+                                <div class="col-12">
+                                    <div class="cart">
+                                        <div class="cart-wrapper">
+                                            <div class="cart-header">
+                                                <div class="row">
+                                                    <div class="col-12 text-center">Toplam Tutar:<br /> @Model.Product.Price</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <div class="form-group col-6 d-flex justify-content-end">
+                                        <button class="6 btn btn-success">Onayla</button>
+                                    </div>
+                                    <div class="form-group col-6">
+                                        <a href="/Cart/Index" class="btn btn-dark">İptal</a>
+                                    </div>
+                                </div>
+
+                            }
+                            <!-- Product-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

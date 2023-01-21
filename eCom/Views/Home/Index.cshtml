@@ -1,0 +1,122 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<EntityLayer.Entities.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<main>
+    <div id="carouselExampleCaptions" class="carousel slide" style="min-width: 800px;">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div style="width:1500px; height: 650px; background-image: url(/eCom/img/slider1.jpg);"
+                     class="bg-cover bg-cover-right d-block w-100"></div>
+                <div class="slider1 carousel-caption d-none d-md-block position-absolute">
+                    <p class="text-black fs-3">TÜM ZAMANLARIN FAVORİSİ</p>
+                    <h5 class="text-black">Bluzlar & elbiseler</h5>
+                    <p class="text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Inventore
+                        accusantium br blanditiis voluptatum incidunt br excepturi voluptas!.
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div style="width: 1500px; height: 650px; background-image: url(/eCom/img/slider2.jpg);"
+                     class="bg-cover bg-cover-left d-block w-100"></div>
+                <div class="slider2 carousel-caption d-none d-md-block">
+                    <p class="subtitle letter-spacing-3 mb-3 text-primary font-weight-light mb-4">AYAKKABILAR</p>
+                    <h5 class="text-black">Her durum için <br> ayakkabılar</h5>
+                    <p class="text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Inventore
+                        accusantium br blanditiis voluptatum incidunt br excepturi voluptas!.
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div style="width: 1500px; height: 650px; background-image: url(/eCom/img/slider3.jpg);"
+                     class="bg-cover bg-cover-center d-block w-100"></div>
+                <div class="slider3 carousel-caption d-none d-md-block">
+                    <h5 class="text-black">Her bütçeye <br> uygun</h5>
+                    <p class="text-white">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, unde.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <div class="bg-gray-100 position-relative">
+        <div class="container py-6">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-sm-0">
+                    <div class="card card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
+                        <img class="card-img img-scale" src="/eCom/img/man.jpg" alt="Erkek kategori">
+                        <div class="card-img-overlay d-flex align-items-center">
+                            <div class="w-100 py-3">
+                                <h2 class="display-3 fw-bold mb-0">Erkek</h2><a class="stretched-link"
+                                                                                href="/Category/DetailsAllProduct/1"><span class="sr-only">See </span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5 mb-sm-0">
+                    <div class="card card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
+                        <img class="card-img img-scale" src="/eCom/img/woman.jpg" alt="Kadın kategori">
+                        <div class="card-img-overlay d-flex align-items-center">
+                            <div class="w-100 py-3">
+                                <h2 class="display-3 fw-bold mb-0">Kadın</h2><a class="stretched-link"
+                                                                                href="/Category/DetailsAllProduct/2"><span class="sr-only">See </span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-5 mb-sm-0">
+                    <div class="card card-scale shadow-0 border-0 text-white text-hover-gray-900 overlay-hover-light text-center">
+                        <img class="card-img img-scale" src="/eCom/img/kid.jpg" alt="Çocuk kategori">
+                        <div class="card-img-overlay d-flex align-items-center">
+                            <div class="w-100 py-3">
+                                <h2 class="display-3 fw-bold mb-0">Çocuk</h2>
+                                <a class="stretched-link" href="/Category/DetailsAllProduct/3">
+                                    <span class="sr-only">See </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-6">
+        <div class="col-lg-10 col-xl-8 text-center mx-auto">
+            <h2 class="display-3 mb-4">En popüler ürünler</h2>
+            <p class="lead text-muted mb-3">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias ipsam
+                tenetur aperiam placeat voluptatibus, numquam fugit nostrum. Ratione nulla ducimus minima alias
+                aliquid? Ipsa, vitae unde modi debitis ipsam pariatur?
+            </p>
+        </div>
+        <br><br>
+
+        @Html.Action("CatergoryList", "Category")
+
+        @Html.Action("PopularProduct", "Product")
+    </div>
+</main>

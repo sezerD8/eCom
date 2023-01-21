@@ -1,0 +1,238 @@
+﻿@model EntityLayer.Entities.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+<body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="150">
+    <section class="pb-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="card">
+                        <div class="card-header py-4 px-5">
+                            <h5 class="mb-0">Giriş</h5>
+                        </div>
+                        <div class="card-body p-5">
+                            <p class="lead">Zaten bir hesabın var mı?</p>
+                            <p class="text-muted text-sm">eCom sitesinde zaten bir hesabın varsa aşağıdaki bilgileri doldurup giriş yapabilirsin!</p>
+                            <hr class="my-4">
+                            <form action="/Account/Login" method="post">
+                                <div class="mb-3">
+                                    <label class="form-label" for="emailLogin" name="Email">Email</label>
+                                    <input class="form-control" id="emailLogin" name="Email" type="text">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="passwordLogin">Şifre</label>
+                                    <input class="form-control" id="passwordLogin" name="Password" type="password">
+                                </div>
+                                <button class="btn btn-dark" type="submit"><i class="fa fa-sign-in-alt me-2"></i> Giriş Yap</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="card">
+                        <div class="card-header py-4 px-5">
+                            <h5 class="mb-0">Kayıt ol</h5>
+                        </div>
+                        <div class="card-body p-5">
+                            <p class="lead">Henüz eCom müşterisi değil misin?</p>
+                            <p class="text-muted text-sm">Eğer bir eCom müşterisi değilsen aşağıdaki bilgieri eksiksiz doldurup aramıza katılabilirsin!</p>
+                            <hr class="my-4">
+                            <form action="/Account/Register" method="post">
+                                <div class="mb-3">
+                                    <label class="form-label" for="name">İsim</label>
+                                    <input class="form-control" id="name" name="Name" type="text">
+                                    @Html.ValidationMessageFor(x => x.Name, "", new { @style = "color:red" })
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="surname">Soyisim</label>
+                                    <input class="form-control" id="name" name="SurName" type="text">
+                                    @Html.ValidationMessageFor(x => x.SurName, "", new { @style = "color:red" })
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="emailSignup">Email</label>
+                                    <input class="form-control" id="emailSignup" name="Email" type="text">
+                                    @Html.ValidationMessageFor(x => x.Email, "", new { @style = "color:red" })
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="surname">Kullanıcı Adı</label>
+                                    <input class="form-control" id="name" name="UserName" type="text">
+                                    @Html.ValidationMessageFor(x => x.UserName, "", new { @style = "color:red" })
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="passwordSignup">Parola</label>
+                                    <input class="form-control" id="passwordSignup" name="Password" type="password">
+                                    @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="passwordSignup">Parola Tekrar</label>
+                                    <input class="form-control" id="passwordSignup" name="RePassword" type="password">
+                                    @Html.ValidationMessageFor(x => x.RePassword, "", new { @style = "color:red" })
+                                </div>
+                                <button class="btn btn-dark" type="submit"><i class="far fa-user me-2"></i>Kayıt Ol</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Sidebar Cart Modal-->
+    <div class="modal fade modal-right" id="sidebarCart" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content sidebar-cart-content">
+                <div class="modal-header mb-3 border-0">
+                    <button class="btn-close btn-close-lg btn-close-rotate opacity-8" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-5 sidebar-cart-body">
+                    <!-- Empty cart snippet-->
+                    <!-- In case of empty cart - display this snippet + remove .d-none-->
+                    <div class="d-none text-center mb-5">
+                        <svg class="svg-icon w-3rem h-3rem svg-icon-light mb-4 text-muted">
+                            <use xlink:href="#retail-bag-1"> </use>
+                        </svg>
+                        <p>Your cart is empty </p>
+                    </div>
+                    <!-- Empty cart snippet end-->
+                    <div class="sidebar-cart-product-wrapper custom-scrollbar mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+                        <div id="mCSB_1" class="mCustomScrollBox mCS-dark-thin mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                            <div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                                <!-- cart item-->
+                                <div class="navbar-cart-product">
+                                    <div class="d-flex align-items-center">
+                                        <a href="detail-1.html"><img class="img-fluid navbar-cart-product-image mCS_img_loaded" src="https://d19m59y37dris4.cloudfront.net/varkala/2-1/img/product/product-square-ian-dooley-347968-unsplash.jpg" alt="..."></a>
+                                        <div class="w-100">
+                                            <a class="navbar-cart-product-remove" href="#!">
+                                                <svg class="svg-icon sidebar-cart-icon">
+                                                    <use xlink:href="#close-1"> </use>
+                                                </svg>
+                                            </a>
+                                            <div class="ps-3"> <a class="navbar-cart-product-link text-dark link-animated" href="detail-1.html">Skull Tee</a><small class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00     </strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- cart item-->
+                                <div class="navbar-cart-product">
+                                    <div class="d-flex align-items-center">
+                                        <a href="detail-1.html"><img class="img-fluid navbar-cart-product-image mCS_img_loaded" src="https://d19m59y37dris4.cloudfront.net/varkala/2-1/img/product/product-square-kyle-loftus-596319-unsplash.jpg" alt="..."></a>
+                                        <div class="w-100">
+                                            <a class="navbar-cart-product-remove" href="#!">
+                                                <svg class="svg-icon sidebar-cart-icon">
+                                                    <use xlink:href="#close-1"> </use>
+                                                </svg>
+                                            </a>
+                                            <div class="ps-3"> <a class="navbar-cart-product-link text-dark link-animated" href="detail-1.html">Transparent Blouse</a><small class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00     </strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- cart item-->
+                                <div class="navbar-cart-product">
+                                    <div class="d-flex align-items-center">
+                                        <a href="detail-1.html"><img class="img-fluid navbar-cart-product-image mCS_img_loaded" src="https://d19m59y37dris4.cloudfront.net/varkala/2-1/img/product/product-square-serrah-galos-494312-unsplash.jpg" alt="..."></a>
+                                        <div class="w-100">
+                                            <a class="navbar-cart-product-remove" href="#!">
+                                                <svg class="svg-icon sidebar-cart-icon">
+                                                    <use xlink:href="#close-1"> </use>
+                                                </svg>
+                                            </a>
+                                            <div class="ps-3"> <a class="navbar-cart-product-link text-dark link-animated" href="detail-1.html">White Tee</a><small class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00     </strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- cart item-->
+                                <div class="navbar-cart-product">
+                                    <div class="d-flex align-items-center">
+                                        <a href="detail-1.html"><img class="img-fluid navbar-cart-product-image mCS_img_loaded" src="https://d19m59y37dris4.cloudfront.net/varkala/2-1/img/product/product-square-ian-dooley-347968-unsplash.jpg" alt="..."></a>
+                                        <div class="w-100">
+                                            <a class="navbar-cart-product-remove" href="#!">
+                                                <svg class="svg-icon sidebar-cart-icon">
+                                                    <use xlink:href="#close-1"> </use>
+                                                </svg>
+                                            </a>
+                                            <div class="ps-3"> <a class="navbar-cart-product-link text-dark link-animated" href="detail-1.html">Skull Tee</a><small class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00     </strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- cart item-->
+                                <div class="navbar-cart-product">
+                                    <div class="d-flex align-items-center">
+                                        <a href="detail-1.html"><img class="img-fluid navbar-cart-product-image mCS_img_loaded" src="https://d19m59y37dris4.cloudfront.net/varkala/2-1/img/product/product-square-kyle-loftus-596319-unsplash.jpg" alt="..."></a>
+                                        <div class="w-100">
+                                            <a class="navbar-cart-product-remove" href="#!">
+                                                <svg class="svg-icon sidebar-cart-icon">
+                                                    <use xlink:href="#close-1"> </use>
+                                                </svg>
+                                            </a>
+                                            <div class="ps-3"> <a class="navbar-cart-product-link text-dark link-animated" href="detail-1.html">Transparent Blouse</a><small class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00     </strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- cart item-->
+                                <div class="navbar-cart-product">
+                                    <div class="d-flex align-items-center">
+                                        <a href="detail-1.html"><img class="img-fluid navbar-cart-product-image mCS_img_loaded" src="https://d19m59y37dris4.cloudfront.net/varkala/2-1/img/product/product-square-serrah-galos-494312-unsplash.jpg" alt="..."></a>
+                                        <div class="w-100">
+                                            <a class="navbar-cart-product-remove" href="#!">
+                                                <svg class="svg-icon sidebar-cart-icon">
+                                                    <use xlink:href="#close-1"> </use>
+                                                </svg>
+                                            </a>
+                                            <div class="ps-3"> <a class="navbar-cart-product-link text-dark link-animated" href="detail-1.html">White Tee</a><small class="d-block text-muted">Quantity: 1 </small><strong class="d-block text-sm">$75.00     </strong></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark-thin mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div><div class="mCSB_draggerRail"></div></div></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer sidebar-cart-footer shadow">
+                    <div class="w-100">
+                        <h5 class="mb-4">Subtotal: <span class="float-right">$465.32</span></h5>
+                        <div class="d-grid gap-3"><a class="btn btn-outline-dark" href="cart.html">View cart</a><a class="btn btn-dark" href="checkout.html">Checkout</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sidebar Modal Right-->
+    <div class="modal fade modal-right" id="sidebarRight" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button class="btn-close btn-close-lg btn-close-rotate" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body px-5 pb-5">
+                    <div>
+                        <h5 class="mb-5 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="50">Varkala</h5>
+                        <ul class="nav flex-column mb-5">
+                            <li class="nav-item active"><a class="nav-link ps-0" href="#">Home </a></li>
+                            <li class="nav-item"><a class="nav-link ps-0" href="#">Link</a></li>
+                            <li class="nav-item"><a class="nav-link ps-0 disabled" href="#">Disabled</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link ps-0 dropdown-toggle" id="navbarDropdownMenuLink" href="#" data-bs-target="#sidebarSubmenu" data-bs-toggle="collapse" aria-haspopup="true" aria-expanded="false">Dropdown link</a>
+                                <div class="collapse" id="sidebarSubmenu">
+                                    <ul class="nav flex-column ms-3">
+                                        <li class="nav-item"><a class="nav-link ps-0" href="#">Action</a></li>
+                                        <li class="nav-item"><a class="nav-link ps-0" href="#">Another action</a></li>
+                                        <li class="nav-item"><a class="nav-link ps-0" href="#">Something else here                </a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="list-inline mb-4">
+                            <li class="list-inline-item me-2"><i class="fab fa-facebook-f"> </i></li>
+                            <li class="list-inline-item me-2"><i class="fab fa-twitter"> </i></li>
+                            <li class="list-inline-item me-2">
+                                <svg class="svg-icon me-2">
+                                    <use xlink:href="#calls-1"> </use>
+                                </svg>020-800-456-747
+                            </li>
+                        </ul>
+                        <p class="text-sm text-muted mb-0">Samsa was a travelling salesman - and above it there hung a picture that he had recently cut out of an illustrated magazine and housed in a nice, gilded frame.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

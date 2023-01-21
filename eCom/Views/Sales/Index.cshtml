@@ -1,0 +1,54 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<EntityLayer.Entities.Sales>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/DefaultLayout.cshtml";
+}
+
+
+<section>
+    <div class="container">
+        <div class="row ">
+
+            <div class="col-12">
+                <div class="cart">
+                    <div class="cart-wrapper">
+                        <div class="cart-header">
+                            <div class="row">
+                                <div class="col-6">Ürün</div>
+                                <div class="col-2 text-center">Toplam</div>
+                                <div class="col-2 text-center ps-5">Adet</div>
+                                <div class="col-2 text-center">Tarih</div>
+                            </div>
+                        </div>
+                        <div class="cart-body">
+                            <!-- Product-->
+                            @foreach (var item in Model)
+                            {
+                                <div class="cart-item">
+                                    <div class="row d-flex align-items-center text-center">
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-center">
+                                                <a href="detail.html"><img class="cart-item-img" src="/Content/img/@item.Product.Image" alt="..."></a>
+                                                <div class="cart-title text-start">
+                                                    <a class="text-dark" href="/Product/ProductDetails/@item.Product.Id"><strong>@item.Product.Name</strong></a>
+                                                    <br><span class="text-muted text-sm">@item.Product.Size.Name</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-2">@item.Price</div>
+                                        <div class="col-2">@item.Quantity</div>
+                                        <div class="col-2 text-center">@Convert.ToDateTime(item.Date).ToString("dd/MM/yyyy")</div>
+                                    </div>
+                                </div>
+                            }
+
+                            <!-- Product-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

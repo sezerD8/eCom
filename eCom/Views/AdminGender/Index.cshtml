@@ -1,0 +1,77 @@
+﻿@model List<EntityLayer.Entities.Gender>
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br />
+<div class="page-header">
+    <h2 class="pageheader-title">Cinsiyet</h2>
+</div>
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="card">
+            <h5 class="card-header">Cinsiyet</h5>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered first" id="table">
+                        <thead>
+                            <tr>
+                                <th>Ad</th>
+                                <th>Sil</th>
+                                <th>Güncelle</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@item.Name</td>
+                                    <td><a class="btn btn-danger btnSil text-white" data-id="@item.Id">Sil</a></td>
+                                    <td><a href="/AdminGender/Update/@item.Id" class="btn btn-primary">Güncelle</a></td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<a href="/AdminGender/Create" class="btn btn-success btn-block d-flex align-items-center justify-content-center" style="height:60px;">Cinsiyet Ekle</a>
+
+<script src="~/Scripts/jquery-1.9.0.min.js"></script>
+<script src="~/Scripts/sweetalert.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $("#table").on("click", ".btnSil", function () {
+            var btn = $(this)
+            swal({
+                title: "Emin misin?",
+                text: "Eğer kategoriyi silersen bir daha geri getiremeyebilirsin!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((result) => {
+                    if (result) {
+                        swal("Kategori başarıyla silindi!", {
+                            icon: "success",
+                        });
+                        var id = btn.data("id");
+                        $.ajax({
+                            type: "GET",
+                            url: "/AdminGender/Delete/" + id,
+                            success: function () {
+                                btn.parent().parent().remove();
+                            }
+                        });
+                    }
+                    else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+        })
+    })
+</script>

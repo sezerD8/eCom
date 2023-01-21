@@ -1,0 +1,342 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Sezer Duman 20350041</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link rel="shortcut icon" href="https://d19m59y37dris4.cloudfront.net/varkala/2-1/img/favicon.png">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/varkala/2-1/css/custom.0a822280.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/varkala/2-1/css/style.default.db81a5a2.css" id="theme-stylesheet">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/varkala/2-1/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/varkala/2-1/vendor/aos/aos.css">
+    <link rel="stylesheet" href="https://d19m59y37dris4.cloudfront.net/varkala/2-1/vendor/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="fonts/stylesheet.e9dc714d.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/eCom/style.css" rel="stylesheet" />
+</head>
+<body>
+    <header class="d-block bg-header">
+        <div class="top-bar text-sm bg-transparent ">
+            <div class="container-fluid py-3 px-5 ">
+                <div class="row align-items-center">
+                    <div class="col-md-4 d-none d-md-flex">
+                        <ul class="list-inline mb-0 d-flex">
+                            <li class="list-inline-item me-2">
+                                <a href="#" class="text-reset text-primary-hover">
+                                    <i class="fab fa-facebook-f"> </i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#" class="text-reset text-primary-hover">
+                                    <i class="fab fa-twitter"> </i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item me-2"><i class="fa-solid fa-phone"></i></li>
+                            <li>
+                                <p class="tel">0551 948 9108</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4 col-6 text-center justify-content-center">
+                        <p class="m-0">200 TL Üzeri alışverişte kargo bedava!</p>
+                    </div>
+                    <div class="col-md-4 col-6 d-flex justify-content-end">
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="icon-link me-3">
+                                <i class="fa-solid fa-user me-2"></i><a>@Session["Ad"] @Session["Soyad"]</a>
+                            </div>
+                            <div class="icon-link me-3">
+                                <a href="/Account/LogOut/">Çıkış yap</a>
+                            </div>
+
+                            if (User.IsInRole("Admin"))
+                            {
+                                <div class="icon-link me-3">
+                                    <a href="/Admin/Index">Admin paneli</a>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="icon-link me-3">
+                                <a href="/Account/Login">Giriş yap</a>
+                            </div>
+                            <div class="icon-link me-3">
+                                <a href="/Account/Login">Kayıt ol</a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+            <nav class="row navbar navbar-expand justify-content-between justify-content-md-between bg-transparent px-5">
+                <a href="" class="d-flex col-4 d-lg-none navbar-brand fs-4">eCom</a>
+                <div class="coalign-items-center d-flex collapse navbar-collapse" id="navbarSupportedContent">
+                    <div class="col-8 coalign-items-center d-none d-lg-flex">
+                        <a href="/Home/Index" class="navbar-brand fs-4">eCom</a>
+                        <ul class="navbar-nav align-items-center  m-0">
+                            <li class="nav-item mx-3 ms-5"><a class="nav-link" href="/Home/Index">Anasayfa</a></li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="/Gender/DetailsAllProduct/1">Erkek</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="/Gender/DetailsAllProduct/2">Kadın</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="/Gender/DetailsAllProduct/3">Çocuk</a>
+                            </li>
+                            <li class="nav-item mx-3"><a class="nav-link" href="/AllProducts/Index">Tüm ürünler</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-4 d-flex align-items-center justify-content-center">
+                        <div class="search col-0 col-md-7 d-none d-lg-flex">
+                            <form role="search">
+                                <div class="input-group input-group-underlined">
+                                    <input class="form-control form-control-search ps-3 h-auto" type="search"
+                                           placeholder="Search" aria-label="Search">
+                                    <button class="btn rounded-0" id="button-search" type="button">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="other col-12 col-md-5 d-flex justify-content-center">
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item fs-4 me-1"><a href="/User/Update/"><i class="fa-solid fa-user"></i></a></li>
+                                <li class="list-inline-item fs-4 me-3">
+                                    <a href="/Cart/Index">
+                                        <i class="fa-solid fa-cart-shopping"></i><label class="fs-3" style="color:red; font-size:20px;">
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                Html.RenderAction("TotalCount", "Cart");
+                                            }
+                                        </label>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item fs-4"><a href="/Sales/Index/"><i class="fa-solid fa-bag-shopping"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-4 d-flex justify-content-end">
+                        <button class="navbar-toggler d-flex d-lg-none" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    @RenderBody()
+    <footer>
+        <div class="py-6 text-muted">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 pe-lg-5 pe-xl-6 mb-5 mb-lg-0">
+                        <h6 class="text-dark letter-spacing-1 mb-4">İletişime geç</h6>
+                        <p class="text-sm mb-3">
+                            eCom ile iletişime geçmek için aktif kullandığınız e-mail adresinizi aşağı yazınız. eCom müşteri hizmetleri size en yakın zamanda ulaşacaktır.
+                        </p>
+                        <form action="#" id="newsletter-form">
+                            <div class="input-group input-group-underlined mb-3">
+                                <input class="form-control form-control-underlined" type="email"
+                                       placeholder="Your Email Address" aria-label="E-mail adresiniz...">
+                                <button class="btn btn-underlined text-gray-700 py-0" type="button">
+                                    <svg class="svg-icon w-2rem h-2rem">
+                                        <use xlink:href="#envelope-1"> </use>
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-7">
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <a class="d-lg-none block-toggler my-3" data-bs-toggle="collapse"
+                                   href="#footerMenu0" aria-expanded="false" aria-controls="footerMenu0">
+                                    Shop<span class="block-toggler-icon"></span>
+                                </a>
+                                <div class="expand-lg collapse" id="footerMenu0">
+                                    <h6 class="text-dark letter-spacing-1 mb-4 d-none d-lg-block">Alışveriş</h6>
+                                    <ul class="list-unstyled text-sm pt-2 pt-lg-0">
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/Category/DetailsAllProduct/2">Kadın</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/Category/DetailsAllProduct/1">Erkek</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/Category/DetailsAllProduct/3">Çocuk</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <a class="d-lg-none block-toggler my-3" data-bs-toggle="collapse"
+                                   href="#footerMenu1" aria-expanded="false" aria-controls="footerMenu1">
+                                    Kurumsal<span class="block-toggler-icon"></span>
+                                </a>
+                                <div class="expand-lg collapse" id="footerMenu1">
+                                    <h6 class="text-dark letter-spacing-1 mb-4 d-none d-lg-block">Kurumsal</h6>
+                                    <ul class="list-unstyled text-sm pt-2 pt-lg-0">
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/Account/Login">Giriş yap</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/Account/Login">Kayıt ol</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/AllProducts/Index">Diğer ürünler</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <a class="d-lg-none block-toggler my-3" data-bs-toggle="collapse"
+                                   href="#footerMenu2" aria-expanded="false" aria-controls="footerMenu2">
+                                    Your
+                                    account<span class="block-toggler-icon"></span>
+                                </a>
+                                <div class="expand-lg collapse" id="footerMenu2">
+                                    <h6 class="text-dark letter-spacing-1 mb-4 d-none d-lg-block">Hesabım</h6>
+                                    <ul class="list-unstyled text-sm pt-2 pt-lg-0">
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/User/Update">Profil</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/Account/Login">Kayıt ol</a>
+                                        </li>
+                                        <li class="mb-2">
+                                            <a class="text-muted text-dark-hover link-animated"
+                                               href="/AllProducts/Index">Diğer ürünler</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="py-4 fw-light text-muted">
+            <div class="container">
+                <div class="row align-items-center text-sm text-gray-500">
+                    <div class="col-lg-4 text-center text-lg-start">
+                        <p class="mb-lg-0">© 2022, Your company. All rights reserved.</p>
+                    </div>
+                    <div class="col-lg-8">
+                        <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-lg-end">
+                            <li class="list-inline-item">
+                                <a class="text-reset" href="#">Terms &amp; Conditions </a>
+                            </li>
+                            <li class="list-inline-item"> <a class="text-reset" href="#">Privacy &amp; cookies </a></li>
+                            <li class="list-inline-item"> <a class="text-reset" href="#">Accessibility </a></li>
+                            <li class="list-inline-item"> <a class="text-reset" href="#">Customer Data Promise </a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+
+        $(function () {
+            $('.txt').on('change', function () {
+                var miktar = $(this).val();
+                var sepetId = $(this).attr('data-id');
+                $.ajax({
+                    url: ':/Cart/DinamikMiktar',
+                    data: { id: sepetId, miktari: miktar },
+                    success: function (res) {
+                        document.location.reload();
+                    }
+                })
+            })
+        });
+
+        function injectSvgSprite(path) {
+
+            var ajax = new XMLHttpRequest();
+            ajax.open("GET", path, true);
+            ajax.send();
+            ajax.onload = function (e) {
+                var div = document.createElement("div");
+                div.className = 'd-none';
+                div.innerHTML = ajax.responseText;
+                document.body.insertBefore(div, document.body.childNodes[0]);
+            }
+        }
+        injectSvgSprite('https://demo.bootstrapious.com/varkala/1-1/icons/orion-svg-sprite.svg');
+        injectSvgSprite('https://demo.bootstrapious.com/varkala/1-1/icons/varkala-clothes.svg');
+        injectSvgSprite('https://demo.bootstrapious.com/varkala/1-1/img/shape/blob-sprite.svg');
+
+    </script>
+    <script src="~/eCom/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+    <script src="https://kit.fontawesome.com/4acca26e2f.js" crossorigin="anonymous"></script>
+    <script src="~/eCom/script.js"></script>
+    <script>
+        var snapSlider = document.getElementById('slider-snap');
+
+        noUiSlider.create(snapSlider, {
+            start: [40, 110],
+            snap: false,
+            connect: true,
+            step: 1,
+            range: {
+                'min': 0,
+                'max': 250
+            }
+        });
+        var snapValues = [
+            document.getElementById('slider-snap-value-lower'),
+            document.getElementById('slider-snap-value-upper')
+        ];
+        var inputValues = [
+            document.getElementById('slider-snap-input-lower'),
+            document.getElementById('slider-snap-input-upper')
+        ];
+        snapSlider.noUiSlider.on('update', function (values, handle) {
+            snapValues[handle].innerHTML = values[handle];
+        });
+
+        snapSlider.noUiSlider.on('change', function (values, handle) {
+            inputValues[handle].value = values[handle];
+        });
+
+    </script>
+    <!-- Some theme config-->
+    <script>
+        var options = {
+            navbarExpandPx: 992
+        }
+
+    </script>
+    <!-- Main Theme files-->
+    <script src="~/eCom/sliders-init.d339d105.js"></script>
+    <script src="~/eCom/theme.4c87e97a.js"></script>
+
+</body>
+
+</html>

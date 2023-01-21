@@ -1,0 +1,40 @@
+﻿
+
+<div class="row">
+    @foreach (var item in ViewBag.Products)
+    {
+        <div class="col-xl-2 col-lg-3 col-md-4 col-6">
+
+            <div class="product product-type-0 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="0">
+                <div class="product-image mb-md-3">
+                    <a href="/Product/ProductDetails/@item.Id">
+                        <img class="img-fluid"
+                             src="~/Content/img/@item.Image"
+                             alt="product">
+                    </a>
+                    <div class="product-hover-overlay heart ">
+                        <a class="text-dark text-sm " href="/Cart/AddCart/@item.Id">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span class="d-none d-sm-inline">Sepete ekle</span>
+                        </a>
+                        <div>
+                            <a class="text-dark text-primary-hover me-2" href="/Product/ProductDetails/@item.Id">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                            <a class="text-dark text-primary-hover text-decoration-none" href="/Product/ProductDetails/@item.Id"
+                               data-bs-toggle="modal" data-bs-target="#quickView">
+                                <i class="fa-solid fa-circle-info"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="position-relative">
+                    <h3 class="text-base mb-1"><a class="text-dark" href="detail-1.html">@item.Name</a></h3>
+                    <p class="text-gray-600 text-sm">
+                        <s class="me-2 text-gray-500">@item.OldPrice TL</s><span>@item.Price TL</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+            }
+    </div>

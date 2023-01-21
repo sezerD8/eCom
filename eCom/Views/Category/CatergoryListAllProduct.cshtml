@@ -1,0 +1,7 @@
+﻿
+<ul class="sidebar-icon-menu mb-5">
+    @foreach (var item in Model)
+     {
+         <li class="sidebar-icon-submenu-item"><a class="sidebar-icon-submenu-link link-animated link-animated-light" href="/Category/DetailsAllProduct/@item.Id">@item.Name</a></li>
+     }
+</ul>

@@ -1,0 +1,71 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<EntityLayer.Entities.Product>
+@{
+    ViewBag.Title = "GenderAllProducts";
+    Layout = "~/Views/Shared/AllProductsLayout.cshtml";
+}
+<div class="container-fluid container-fluid-px py-6">
+    <div class="row">
+        <!-- Grid -->
+        <div class="products-grid col-xl-9 col-lg-8 order-lg-2">
+            <div class="row">
+                <!-- product-->
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-sm-4 col-6">
+                        <div class="product product-type-0 aos-init aos-animate" data-aos="zoom-in" data-aos-delay="0">
+                            <div class="product-image mb-md-3">
+                                <a href="/Product/ProductDetails/@item.Id">
+                                    <img class="img-fluid"
+                                         src="~/Content/img/@item.Image"
+                                         alt="product">
+                                </a>
+                                <div class="product-hover-overlay heart ">
+                                    <a class="text-dark text-sm " href="/Cart/AddCart/@item.Id">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        <span class="d-none d-sm-inline"> Sepete ekle</span>
+                                    </a>
+                                    <div>
+                                        <a class="text-dark text-primary-hover me-2" href="/Product/ProductDetails/@item.Id">
+                                        </a><a class="text-dark text-primary-hover text-decoration-none" href="/Product/ProductDetails/@item.Id"
+                                               data-bs-toggle="modal" data-bs-target="#quickView">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="position-relative">
+                                <h3 class="text-base mb-1"><a class="text-dark" href="/Product/ProductDetails/@item.Id">@item.Name</a></h3>
+                                <p class="text-gray-600 text-sm">
+                                    <s class="me-2 text-gray-500">@item.OldPrice</s><span>@item.Price</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="sidebar col-xl-3 col-lg-4 pe-xl-5 order-lg-1">
+            <div class="sidebar-block px-3 px-lg-0">
+                <a class="d-lg-none block-toggler" data-bs-toggle="collapse" href="#" aria-expanded="false" aria-controls="categoriesMenu">Product Categories<span class="block-toggler-icon"></span></a>
+                <div class="expand-lg collapse" id="categoriesMenu" role="menu">
+                    <h5 class="sidebar-heading d-none d-lg-block">Kategori  </h5>
+                    <div class="sidebar-icon-menu mt-4 mt-lg-0">
+                        @Html.Action("CatergoryListAllProduct", "Category")
+                    </div>
+                </div>
+                <div class="expand-lg collapse" id="categoriesMenu" role="menu">
+                    <h5 class="sidebar-heading d-none d-lg-block">Cinsiyet  </h5>
+                    <div class="sidebar-icon-menu mt-4 mt-lg-0">
+                        @Html.Action("GenderListAllProduct", "Gender")
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<nav class="d-flex justify-content-center mb-5 mt-3" aria-label="page navigation">
+    <div class="d-flex justify-content-center">@Html.PagedListPager(Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.Classic)</div>
+</nav>
