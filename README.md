@@ -8,5 +8,6 @@
 ![sales](https://user-images.githubusercontent.com/59448237/213880980-562994d9-f00f-4e0e-93ff-861229998989.png)
 ![card](https://user-images.githubusercontent.com/59448237/213880982-b12f3f26-aa86-4b8e-acd1-8d0895f1d337.png)
 
-Veri tabanı bağlamak için Entity layer ve eCom katmanının connectionstring değerleri düzenlenmeli
+Veri tabanı bağlamak için Entity layer ve eCom katmanının connectionstring değerleri düzenlenmeli 
+
 If the database is to be connected, the connectionstring values of the Entity layer and eCom layer should be edited.
