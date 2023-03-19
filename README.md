@@ -14,3 +14,8 @@ E-commerce site project with ASP.NET MVC and Multitier architecture
 Veri tabanı bağlamak için Entity layer ve eCom katmanının connectionstring değerleri düzenlenmeli 
 
 If the database is to be connected, the connectionstring values of the Entity layer and eCom layer should be edited.
+
+LIVE: [SİTEYE GİTMEK İÇİN TIKLAYINIZ](http://www.ecom.somee.com/)
+
+EMAİL: sezer@gmail.com
+ŞİFRE: 12345
