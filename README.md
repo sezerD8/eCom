@@ -18,4 +18,5 @@ If the database is to be connected, the connectionstring values of the Entity la
 LIVE: [SİTEYE GİTMEK İÇİN TIKLAYINIZ](http://www.ecom.somee.com/)
 
 EMAİL: sezer@gmail.com
+
 ŞİFRE: 12345
